@@ -2,6 +2,29 @@
 #include <cstring>
 
 using namespace std;
+void createSquare(int *, int);
+
+int main()
+{
+    int n;
+    cout << "Please enter n:" << endl;
+    cin >> n;
+
+    int magicSquare[n][n];
+    memset(magicSquare, 0, sizeof(magicSquare));
+    createSquare((int *)magicSquare, n);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+
+            cout << magicSquare[i][j] << "    ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
 void createSquare(int *arr, int size)
 {
     // set position for 1
@@ -39,26 +62,4 @@ void createSquare(int *arr, int size)
             i++;
         }
     }
-
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-
-            cout << *(arr + i * size + j) << "    ";
-        }
-        cout << endl;
-    }
 };
-int main()
-{
-    int n = 9;
-    // cout << "Please enter n:" << endl;
-    // cin >> n;
-
-    int magicSquare[n][n];
-    memset(magicSquare, 0, sizeof(magicSquare));
-    createSquare((int *)magicSquare, n);
-
-    return 0;
-}
