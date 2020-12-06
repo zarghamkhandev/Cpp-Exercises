@@ -1,21 +1,16 @@
-CC=mcs
-DLL=func.dll
-FUNC=func.cs
-MAINCS=main.cs
-MAINEXE=main.exe
-
-
-all: main clean
+DEP = func.dll
+TARGET = main
+CC = mcs
 
 .SECONDARY:
-%.dll: $(FUNC)
+%.dll: %.cs
 	$(CC) -t:library $<
 
-%.exe: $(MAINCS) $(DLL)
-	$(CC) -r:$(DLL) $<
+%.exe: %.cs $(DEP)
+	$(CC) -r:$(DEP) $<
 
-main: $(MAINEXE)
+$(TARGET): $(TARGET).exe
 	mkbundle --cross default $< -o $@
 
 clean:
-	rm $(DLL) $(MAINEXE) main
+	rm *.dll *.exe $(TARGET)
